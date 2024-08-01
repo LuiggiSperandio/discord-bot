@@ -23,7 +23,7 @@ async def on_message(message):
     # await message.channel.send(f'<@{message.author.id}> e tu que é gay mlk')
 
 
-    #ban hammer
+    #ban hammer a.k.a. !roleta
     if re.search('^!roleta.*', message.content.lower()):
         if len(message.mentions) == 0:
             await message.add_reaction('🫏')
@@ -47,5 +47,28 @@ async def on_message(message):
                     await message.add_reaction('💣')
                     await message.channel.send(f'💣<@{the_chosen_one.id}>💣')
                     await the_chosen_one.edit(voice_channel=None)
+    
+    # Music Check
+    if re.search('!play.*', message.content.lower()):
+        await message.channel.send(f'<@{message.author.id}> https://spotify.com//download')
+    
+    # Social Media check
+    mlist = [
+        'instagram.com',
+        'facebook.com',
+        'reddit.com',
+        'twitter.com',
+        'x.com',
+        'youtube.com',
+        'twitch.tv',
+        'titktok.com'
+    ]
+    for medium in mlist:
+        if medium in message.content:
+            if medium == 'youtube.com' or medium == 'twitch.tv' or medium == 'tiktok.com':
+                await message.channel.send(f'Vai ficar mandando videozinho do {medium[:-4]} no chat? <@{message.author.id}>')
+            else:
+                await message.channel.send(f'Vai ficar mandando postizinho do {medium[:-4]} no chat? <@{message.author.id}>')
+
 
 client.run(environ['TOKEN'])
