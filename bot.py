@@ -35,12 +35,17 @@ async def on_message(message):
                 await message.channel.send(f'<@{message.author.id}> 💩🔫🤖 Tentou atirar no bot e se fodeu!')
                 await message.author.edit(voice_channel=None)
             else:
-                participants_list = message.mentions
+                participants = [x for x in message.mentions]
                 for i in message.mentions:
-                    participants_list.append(message.author)
-                the_chosen_one = choice(participants_list)
-                await message.add_reaction('🔫')
-                await message.channel.send(f'<@{the_chosen_one.id}>🔫🤖')
-                await the_chosen_one.edit(voice_channel=None)
+                    participants.append(message.author)
+                the_chosen_one = choice(participants)
+                if the_chosen_one != message.author:
+                    await message.add_reaction('🔫')
+                    await message.channel.send(f'<@{the_chosen_one.id}>🔫🤖')
+                    await the_chosen_one.edit(voice_channel=None)
+                else:
+                    await message.add_reaction('💣')
+                    await message.channel.send(f'💣<@{the_chosen_one.id}>💣')
+                    await the_chosen_one.edit(voice_channel=None)
 
 client.run(environ['TOKEN'])
