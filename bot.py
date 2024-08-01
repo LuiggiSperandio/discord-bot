@@ -2,7 +2,7 @@ import discord
 from os import environ
 from time import sleep
 import re
-from random import choice
+from random import choice, randint
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -23,7 +23,7 @@ async def on_message(message):
     # await message.channel.send(f'<@{message.author.id}> e tu que é gay mlk')
 
 
-    #ban hammer a.k.a. !roleta
+    # ban hammer a.k.a. !roleta
     if re.search('^!roleta.*', message.content.lower()):
         if len(message.mentions) == 0:
             await message.add_reaction('🫏')
@@ -69,6 +69,19 @@ async def on_message(message):
                 await message.channel.send(f'Vai ficar mandando videozinho do {medium[:-4]} no chat? <@{message.author.id}>')
             else:
                 await message.channel.send(f'Vai ficar mandando postizinho do {medium[:-4]} no chat? <@{message.author.id}>')
+
+
+# Kick when join channel
+@client.event
+async def on_voice_state_update(member, before, after):
+    if after.channel != None and (after.channel != before.channel):
+        oda_id = 943904144413044736
+        leo_id = 664623667816169473
+        if member.id == oda_id or member.id == leo_id:
+            if randint(1,2) == 2:
+                return
+            await member.edit(voice_channel=None)
+            print(f'{member} kicked OMEGALUL')
 
 
 client.run(environ['TOKEN'])
