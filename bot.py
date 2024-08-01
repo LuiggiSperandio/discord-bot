@@ -50,7 +50,7 @@ async def on_message(message):
     
     # Music Check
     if re.search('!play.*', message.content.lower()):
-        await message.channel.send(f'<@{message.author.id}> https://spotify.com//download')
+        await message.channel.send(f'<@{message.author.id}> https://spotify.com/download')
     
     # Social Media check
     mlist = [
