@@ -74,7 +74,7 @@ async def on_message(message):
 async def on_voice_state_update(member, before, after):
     if after.channel != None and (after.channel != before.channel):
         oda_id = 943904144413044736
-        # leo_id = 664623667816169473
+        leo_id = 664623667816169473
         leo_id = 390370312161722369
         if member.id == oda_id or member.id == leo_id:
             if randint(1,2) == 2:
