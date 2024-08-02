@@ -19,9 +19,7 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    print(f'Message from {message.author}: {message.content}')
-    # await message.channel.send(f'<@{message.author.id}> e tu que é gay mlk')
-
+    print(f'Message from {message.author}@{message.channel}: {message.content}', flush=True)
 
     # ban hammer a.k.a. !roleta
     if re.search('^!roleta.*', message.content.lower()):
@@ -76,12 +74,16 @@ async def on_message(message):
 async def on_voice_state_update(member, before, after):
     if after.channel != None and (after.channel != before.channel):
         oda_id = 943904144413044736
-        leo_id = 664623667816169473
+        # leo_id = 664623667816169473
+        leo_id = 390370312161722369
         if member.id == oda_id or member.id == leo_id:
             if randint(1,2) == 2:
                 return
+            # memes id:                  875435905148661760
+            channel = client.get_channel(875435905148661760)
+            await channel.send(f'<@{member.id}> Oléééééé')
             await member.edit(voice_channel=None)
-            print(f'{member} kicked OMEGALUL')
+            print(f'{member} kicked OMEGALUL', flush=True)
 
 
 client.run(environ['TOKEN'])
