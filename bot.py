@@ -73,24 +73,24 @@ async def on_message(message):
 @client.event
 async def on_voice_state_update(member, before, after):
     if after.channel != None and (after.channel != before.channel):
-        id_lista = [
-            # Oda
-            943904144413044736,
-            # Leo
-            664623667816169473,
-            # Soneca
-            390370312161722369,
-            # Enzo
-            256870647362224138,
-        ]
-        if member.id in id_lista:
-            if randint(1,2) == 2:
-                return
-            # memes id:                  875435905148661760
-            channel = client.get_channel(875435905148661760)
-            await channel.send(f'<@{member.id}> Oléééééé')
-            await member.edit(voice_channel=None)
-            print(f'{member} kicked OMEGALUL', flush=True)
+        # id_lista = [
+        #     # Oda
+        #     943904144413044736,
+        #     # Leo
+        #     664623667816169473,
+        #     # Soneca
+        #     390370312161722369,
+        #     # Enzo
+        #     256870647362224138,
+        # ]
+        # if member.id in id_lista:
+        if randint(1,2) == 2:
+            return
+        # memes id:                  875435905148661760
+        channel = client.get_channel(875435905148661760)
+        await channel.send(f'<@{member.id}> Oléééééé')
+        await member.edit(voice_channel=None)
+        print(f'{member} kicked OMEGALUL', flush=True)
 
 
 client.run(environ['TOKEN'])
